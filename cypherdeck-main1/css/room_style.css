@@ -1,0 +1,411 @@
+/* dark theme with green grid background */
+body {
+  background: linear-gradient(45deg, #000000 0%, #0a0a0a 50%, #000000 100%);
+  background-size: 400% 400%;
+  background-attachment: fixed;
+  font-family: 'Courier New', monospace;
+  cursor: default;
+  padding: 2rem;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* main desktop area where windows go */
+.desktop {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 4rem);
+  /* green grid pattern background */
+  background-image: 
+    linear-gradient(90deg, transparent 24%, rgba(0,255,102,0.1) 25%, rgba(0,255,102,0.1) 26%, transparent 27%, transparent 74%, rgba(0,255,102,0.1) 75%, rgba(0,255,102,0.1) 76%, transparent 77%, transparent),
+    linear-gradient(0deg, transparent 24%, rgba(0,255,102,0.1) 25%, rgba(0,255,102,0.1) 26%, transparent 27%, transparent 74%, rgba(0,255,102,0.1) 75%, rgba(0,255,102,0.1) 76%, transparent 77%, transparent);
+  background-size: 50px 50px;
+  background-color: #000;
+}
+
+/* styled window boxes */
+.window {
+  position: absolute;
+  background: #111;
+  border: 2px solid #00ff66;
+  border-radius: 4px;
+  box-shadow: 0 0 20px rgba(0,255,102,0.4), inset 0 0 20px rgba(0,255,102,0.05);
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+  touch-action: none;
+  min-width: 300px;
+}
+
+/* top bar of the window with title and buttons */
+.window-titlebar {
+  background: linear-gradient(90deg, #0d47a1 0%, #1565c0 100%);
+  color: white;
+  padding: 2px 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: move;
+  user-select: none;
+  font-weight: bold;
+  font-size: 0.85rem;
+  border-bottom: 1px solid #00ff66;
+}
+
+.window-title {
+  flex: 1;
+  padding: 2px 5px;
+  font-size: 0.85rem;
+}
+
+.window-controls {
+  display: flex;
+  gap: 2px;
+}
+
+/* windows 95 style buttons */
+.window-btn {
+  width: 18px;
+  height: 14px;
+  background: #0d47a1;
+  border: 1px solid;
+  border-color: #fff #000 #000 #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 10px;
+  color: white;
+  font-weight: bold;
+}
+
+.window-btn:active {
+  border-color: #000 #fff #fff #000;
+}
+
+/* inside the window where content goes */
+.window-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+  background: #1a1a1a;
+  color: #00ff66;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* chat window positioning and size */
+#chat-window {
+  left: 10%;
+  top: 10%;
+  width: 50%;
+  height: 65%;
+}
+
+/* message containers */
+.chat-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* individual message styling */
+.chat-message {
+  background: rgba(0,255,102,0.05);
+  border-left: 2px solid #00ff66;
+  padding: 6px 10px;
+  border-radius: 2px;
+}
+
+/* username color in messages */
+.chat-user {
+  color: #00ff99;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+/* time when message was sent */
+.chat-time {
+  color: #666;
+  font-size: 0.75rem;
+  float: right;
+}
+
+/* the actual message text */
+.chat-text {
+  color: #bbb;
+  word-wrap: break-word;
+  margin-top: 4px;
+}
+
+/* input area at bottom of chat */
+.chat-input-area {
+  padding: 8px;
+  border-top: 1px solid #00ff66;
+  background: #0a0a0a;
+}
+
+.chat-input-area input {
+  width: 100%;
+  background: #000;
+  border: 1px solid #00ff66;
+  color: #00ff66;
+  padding: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+}
+
+.chat-input-area input:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(0,255,102,0.5);
+}
+
+/* puzzle list window */
+#puzzles-window {
+  right: 10%;
+  top: 10%;
+  width: 35%;
+  height: 65%;
+}
+
+/* list of puzzles */
+.puzzle-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* individual puzzle item */
+.puzzle-item {
+  background: rgba(0,255,102,0.08);
+  border: 1px solid #00ff66;
+  padding: 8px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.puzzle-item:hover {
+  background: rgba(0,255,102,0.15);
+  box-shadow: 0 0 10px rgba(0,255,102,0.3);
+}
+
+/* puzzle name */
+.puzzle-title {
+  color: #00ff66;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+/* difficulty and points */
+.puzzle-meta {
+  color: #888;
+  font-size: 0.8rem;
+  margin-top: 2px;
+}
+
+/* yellow sticky note paper */
+.sticky-note {
+  position: absolute;
+  width: 200px;
+  min-height: 150px;
+  background: #ffff00;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5), 0 0 20px rgba(0,255,102,0.2);
+  padding: 12px;
+  border-radius: 2px;
+  cursor: move;
+  touch-action: none;
+  z-index: 100;
+  user-select: none;
+  transform: rotate(-1deg);
+  font-family: 'Comic Sans MS', cursive;
+  color: #333;
+  transition: box-shadow 0.3s ease;
+}
+
+.sticky-note:hover {
+  box-shadow: 0 6px 12px rgba(0,0,0,0.6), 0 0 25px rgba(0,255,102,0.4);
+}
+
+/* rotate every other note slightly */
+.sticky-note:nth-child(odd) {
+  transform: rotate(2deg);
+}
+
+/* control buttons for sticky notes */
+.sticky-note-controls {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  display: flex;
+  gap: 2px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sticky-note:hover .sticky-note-controls {
+  opacity: 1;
+}
+
+.sticky-btn {
+  background: rgba(0,0,0,0.7);
+  border: 1px solid #666;
+  color: #fff;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 2px;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.sticky-btn:hover {
+  background: #00ff66;
+  color: #000;
+  border-color: #00ff66;
+}
+
+/* title at top of note */
+.sticky-note-title {
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  padding-bottom: 4px;
+  color: #000;
+}
+
+/* main text of the note */
+.sticky-note-content {
+  font-size: 0.85rem;
+  color: #333;
+  word-wrap: break-word;
+  line-height: 1.3;
+}
+
+/* button to create new note */
+.create-note-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #00ff66 0%, #00cc55 100%);
+  color: #000;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  z-index: 200;
+  box-shadow: 0 0 15px rgba(0,255,102,0.5);
+}
+
+.create-note-btn:hover {
+  box-shadow: 0 0 30px rgba(0,255,102,0.8);
+}
+
+/* vhs scanline effect */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255,255,255,0.02) 2px,
+    rgba(255,255,255,0.02) 4px
+  );
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* mobile responsive layout */
+@media (max-width: 1024px) {
+  #chat-window {
+    width: 100%;
+    height: 50%;
+    left: 0 !important;
+    top: 0 !important;
+  }
+
+  #puzzles-window {
+    width: 100%;
+    height: 45%;
+    right: 0 !important;
+    top: 55% !important;
+    left: 0 !important;
+  }
+}
+
+/* little triangle in bottom right corner to resize window */
+.window-resize-handle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 0;
+  bottom: 0;
+  cursor: nwse-resize;
+  background: linear-gradient(135deg, transparent 0%, transparent 50%, #00ff66 50%, #00ff66 100%);
+  opacity: 0.6;
+  z-index: 10;
+}
+
+.window-resize-handle:hover {
+  opacity: 1;
+}
+
+/* file upload section */
+.file-upload-area {
+  border: 1px dashed #00ff66;
+  padding: 8px;
+  margin-bottom: 8px;
+  border-radius: 2px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.file-upload-area:hover {
+  background: rgba(0,255,102,0.1);
+  border-color: #00bfff;
+}
+
+.file-upload-area input[type="file"] {
+  display: none;
+}
+
+/* uploaded file list item */
+.uploaded-file {
+  background: rgba(0,255,102,0.1);
+  border-left: 3px solid #00ff66;
+  padding: 4px 6px;
+  margin: 4px 0;
+  border-radius: 2px;
+  font-size: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.uploaded-file .file-delete {
+  cursor: pointer;
+  color: #dc3545;
+}
+
+
+:root {
+    --theme-color: #00ff66; /* Default green */
+}
+
+.main-box {
+    border: 2px solid var(--theme-color);
+    box-shadow: 0 0 20px var(--theme-color);
+}
